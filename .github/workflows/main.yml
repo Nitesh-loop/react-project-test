@@ -28,6 +28,11 @@ jobs:
       - name: Deploy
         run: |
           npm install -g gh-pages
+          # Remove existing index.html (if it exists)
+          rm -f index.html
+          # Copy index.html from the main branch
+          git checkout main -- index.html
+          # Deploy to gh-pages branch
           gh-pages -d build -b gh-pages -u "Nitesh-loop <nitesh166k@gmail.com>" -t ${{ secrets.GH_PAT }}
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
