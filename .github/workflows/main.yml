@@ -10,11 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up Git
-        run: |
-          git config --global user.email "nitesh166k@gmail.com"
-          git config --global user.name "Nitesh-loop"
-    
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -28,4 +23,8 @@ jobs:
       - name: Deploy
         run: |
           npm install -g gh-pages
-          gh-pages -d build -b gh-pages -r https://github.com/Nitesh-loop/react-project-test.git
+          git config --global credential.helper store
+          echo "//github.com/:_authToken=${{ secrets.GH_PAT }}" > ~/.git-credentials
+          gh-pages -d build -b gh-pages
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
