@@ -28,6 +28,6 @@ jobs:
       - name: Deploy
         run: |
           npm install -g gh-pages
-          gh-pages -d build -b gh-pages -u "Nitesh-loop" -t ${{ secrets.GH_PAT }}
+          gh-pages -d build -b gh-pages -u "Nitesh-loop nitesh166k@gmail.com" -t ${{ secrets.GH_PAT }}
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
